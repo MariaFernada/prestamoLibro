@@ -108,7 +108,9 @@
 <body>
 
 <div class="container">
-  <h2>PRESTAMO DE LIBROS</h2>
+ <h2>PRESTAMO DE LIBROS  </h2>
+  <img src ='https://www.pinclipart.com/picdir/big/9-90729_ac-dc-cliparts-cono-de-libros-png-transparent.png' width=50 height=50>
+  
   <hr>
   <div class='row'>
   <form class="form-inline" method = 'post' name='form1'>
