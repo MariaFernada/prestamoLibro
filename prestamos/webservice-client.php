@@ -10,7 +10,7 @@
 	$result = array();
 	$result_all = array();
 	$response = '';
-	$wsdl = "http://localhost:8081/webServicesUSTA1/webservice-server.php?wsdl";
+	$wsdl = "http://localhost:8081/prestamoLibro/prestamos/webservice-server.php?wsdl";
 	if(isset($_POST['sub'])){
 
 		$isbn = trim($_POST['isbn']);
