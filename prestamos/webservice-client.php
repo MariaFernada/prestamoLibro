@@ -191,7 +191,7 @@ if (isset($_POST['delete'])) {
 			<div class="col-12">
 			<h2>Información del Libro</h2></div>
 			
-
+			<div class="col-5"></div>
 			<div class="col-2">
 				<form class="form-inline " method='post' name='form1'>
 					<button type="submit" name='sub_all' class="btn btn-secondary " >
@@ -202,8 +202,8 @@ if (isset($_POST['delete'])) {
 
 				</form></div>
 
-				<div class="col-4"></div>
-				<div class="col-6 ">
+				
+				<div class="col-5 ">
 				<form class="form-inline mr-3" method='post' name='form1'>
 					<?php if ($error) { ?>
 						<div class="alert alert-danger fade in">
