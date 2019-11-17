@@ -107,15 +107,20 @@
 		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <body>
-
+<header>
+	
+		<div class="row">
+			<img src="imagen.png" class="img-fluid " alt="Responsive image"></img>
+		</div>
+	</header>
 <div class="container">
- <h2>PRESTAMO DE LIBROS  </h2>
+<h3>Listar Libros</h3>
   <img src ='https://www.pinclipart.com/picdir/big/9-90729_ac-dc-cliparts-cono-de-libros-png-transparent.png' width=50 height=50>
   
   <hr>
   <div class='row'>
   <form class="form-inline" method = 'post' name='form1'>
-        <button type="submit" name='sub_all' class="btn btn-dark">Información de todos los libros</button>
+        <button type="submit" name='sub_all' class="btn btn-secondary m-1">Información de todos los libros</button>
 
     </form>
      <br /> 
@@ -129,10 +134,10 @@
 	        </div>
 		<?php } ?>
 	    <div class="form-group">
-	      <label for="email">ISBN:</label>
-	      <input type="text" class="form-control" name="isbn" id="isbn" placeholder="Ingrese el ISBN del libro" required>
+	      <label for="email m-1">ISBN:</label>
+	      <input type="text" class="form-control m-1" name="isbn" id="isbn" placeholder="Ingrese el ISBN del libro" required>
 	    </div>
-	    <button type="submit" name='sub' class="btn btn-default">Obtener información del libro</button>
+	    <button type="submit" name='sub' class="btn btn-secondary m-1">Obtener información del libro</button>
     </form>
 
    </div>
@@ -208,13 +213,13 @@
 		<?php } ?>
 	    <div class="form-group">
 	      <label for="email"></label>
-	      <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Enter titulo" required>
-				<input type="text" class="form-control" name="autor" id="autor" placeholder="Enter autor" required>
-				<input type="text" class="form-control" name="id_libro" id="id_libro" placeholder="Enter id_libro" required>
-				<input type="text" class="form-control" name="isbn" id="isbn" placeholder="Enter ISBN" required>
-				<input type="text" class="form-control" name="genero" id="genero" placeholder="Enter genero" required>
+	      <input type="text" class="form-control pm-1" name="titulo" id="titulo" placeholder="Enter titulo" required>
+				<input type="text" class="form-control m-1" name="autor" id="autor" placeholder="Enter autor" required>
+				<input type="text" class="form-control m-1" name="id_libro" id="id_libro" placeholder="Enter id_libro" required>
+				<input type="text" class="form-control m-1" name="isbn" id="isbn" placeholder="Enter ISBN" required>
+				<input type="text" class="form-control m-1" name="genero" id="genero" placeholder="Enter genero" required>
 	    </div>
-	    <button type="submit" name='addbtn' class="btn btn-default">Añadir nuevo libro</button>
+	    <button type="submit" name='addbtn' class="btn btn-secondary m-1">Añadir nuevo libro</button>
     </form>
    </div>
 </div>
