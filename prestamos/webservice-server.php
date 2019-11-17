@@ -10,12 +10,12 @@
  $server = new nusoap_server();
 
  /* Method to isnter a new book */
-function insertBook($titulo, $autor, $id_libro, $isbn, $genero){
+function insertBook($titulo, $autor, $isbn, $genero){
   global $dbconn;
-  $sql_insert = "insert into libros_facultad (titulo, autor, id_libro, isbn, genero) values ( :titulo, :autor, :id_libro, :isbn, :genero)";
+  $sql_insert = "insert into libro (titulo, autor, isbn, genero) values ( :titulo, :autor, :isbn, :genero)";
   $stmt = $dbconn->prepare($sql_insert);
   // insert a row
-  $result = $stmt->execute(array(':titulo'=>$titulo, ':autor'=>$autor, ':id_libro'=>$id_libro, ':isbn'=>$isbn, ':genero'=>$genero));
+  $result = $stmt->execute(array(':titulo'=>$titulo, ':autor'=>$autor, ':isbn'=>$isbn, ':genero'=>$genero));
   if($result) {
     return json_encode(array('status'=> 200, 'msg'=> 'success'));
   }
@@ -28,7 +28,7 @@ function insertBook($titulo, $autor, $id_libro, $isbn, $genero){
 /* Fetch 1 book data */
 function fetchBookData($isbn){
 	global $dbconn;
-	$sql = "SELECT id, titulo, autor, id_libro, isbn, genero FROM libros_facultad 
+	$sql = "SELECT id, titulo, autor, id_libro, isbn, genero FROM libro
 	        where isbn = :isbn";
   // prepare sql and bind parameters
     $stmt = $dbconn->prepare($sql);
@@ -73,7 +73,7 @@ $server->register('fetchBookDataAll',
       'trae la informacion de todos los libros'   // description
       );  
 $server->register('insertBook',
-			array('titulo' => 'xsd:string', 'autor' => 'xsd:string', 'id_libro' => 'xsd:string', 'isbn' => 'xsd:string', 'genero' => 'xsd:string'),  //parameter
+			array('titulo' => 'xsd:string', 'autor' => 'xsd:string', 'isbn' => 'xsd:string', 'genero' => 'xsd:string'),  //parameter
 			array('data' => 'xsd:string'),  //output
 			'urn:book',   //namespace
 			'urn:book#fetchBookData' ,        //soapaction

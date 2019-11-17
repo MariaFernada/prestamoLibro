@@ -68,10 +68,9 @@
 		$isbn = trim($_POST['isbn']);
 		$autor = trim($_POST['autor']);
 		$genero = trim($_POST['genero']);
-		$id_libro = trim($_POST['id_libro']);
 
 		//Perform all required validations here
-		if(!$isbn || !$titulo|| !$autor|| !$genero|| !$id_libro){
+		if(!$isbn || !$titulo|| !$autor|| !$genero){
 			$error = 'All fields are required.';
 		}
 
@@ -86,7 +85,7 @@
 			}
 			 try {
 				/** Call insert book method */
-				 $response =  $client->call('insertBook', array($titulo, $autor, $id_libro, $isbn, $genero));
+				 $response =  $client->call('insertBook', array($titulo, $autor, $isbn, $genero));
 				 $response = json_decode($response);
 			  }catch (Exception $e) {
 			    echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -215,7 +214,6 @@
 	      <label for="email"></label>
 	      <input type="text" class="form-control pm-1" name="titulo" id="titulo" placeholder="Enter titulo" required>
 				<input type="text" class="form-control m-1" name="autor" id="autor" placeholder="Enter autor" required>
-				<input type="text" class="form-control m-1" name="id_libro" id="id_libro" placeholder="Enter id_libro" required>
 				<input type="text" class="form-control m-1" name="isbn" id="isbn" placeholder="Enter ISBN" required>
 				<input type="text" class="form-control m-1" name="genero" id="genero" placeholder="Enter genero" required>
 	    </div>
