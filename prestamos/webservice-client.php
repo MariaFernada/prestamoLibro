@@ -32,6 +32,7 @@
 			 try {
 
 				$result = $client->call('fetchBookData', array($isbn));
+
 				$result = json_decode($result);
 			  }catch (Exception $e) {
 			    echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -93,6 +94,37 @@
 		}
 	}
 
+	if (isset($_POST['btndelete'])) {
+		
+		$id_libro = trim($_POST['id_libro']);
+		echo $id_libro;
+		//echo 'aca toy ISBN->'.$name;
+		
+		if (!$name) {
+				$error = 'id DEl libro no puede estar en blanco.';
+		}
+
+		if (!$error) {
+				//create client object
+				$client = new nusoap_client($wsdl, true);
+				$err = $client->getError();
+
+				if ($err) {
+						echo '<h2>Error en el Constructor</h2>' . $err;
+						// At this point, you know the call that follows will fail
+						exit();
+				}
+				try {
+
+						$result_delete = $client->call('delete', array($id_libro));
+						$result_delete = json_decode($result_delete);
+				} catch (Exception $e) {
+						echo 'Caught exception: ', $e->getMessage(), "\n";
+				}
+		
+}
+}	
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -150,6 +182,7 @@
 	  <th>Autor</th>
 	  <th>ISBN</th>
 		<th>Genero</th>
+		<th></th>
   
    
         
@@ -157,30 +190,40 @@
     </thead>
     <tbody>
     <?php  //select id_libro,titulo,autor,isbn,genero FROM libro
-    	if($result){?>
+    	if($result){
+			if($result){?>
 		      <tr>
 		        <td><?php echo $result->id_libro; ?></td>
 		        <td><?php echo $result->titulo; ?></td>
 		        <td><?php echo $result->autor; ?></td>
 		        <td><?php echo $result->isbn; ?></td>	
-		        <td><?php echo $result->genero; ?></td>
+				<td><?php echo $result->genero; ?></td>
+				<td></td>
 		      </tr>
-      <?php }
+	  
+	  <?php }
   		else{ ?>
   			<tr>
 		        <td colspan='5'>Ingrese un ISBN valido y de click en el boton de traer información del libro</td>
 		      </tr>
-  		<?php } 
+  		<?php } }else{
   			if($result_all){
   		    	foreach ($result_all as $fila => $data) {
+					$id=$data->id_libro;
 					
-  		    		echo '<tr><td>'.$data->id_libro.'</td>'.
+  		    		echo '<tr><td>'.$id.'</td>'.
   		    			     '<td>'.$data->titulo.'</td>'.
   		    			     '<td>'.$data->autor.'</td>'.
   		    			     '<td>'.$data->isbn.'</td>'.
-  		    			     '<td>'.$data->genero.'</td></tr>';
+							   '<td>'.$data->genero.'</td>'.
+							   '<td> <input type="hidden" class="form-control m-1" value="'.$id.'" name="id_libro" id="id_libro" >
+
+							   <button type="button" name="btndelete" value="" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+
+							   </td>
+							   </tr>';
   		    	}
-  		    }	
+  		    }}	
 
 
   		?>
