@@ -64,7 +64,7 @@
 	}	
 
 	/* Add new book **/
-	if(isset($_POST['addbtn'])){
+	if(isset($_POST['addbtn'])){ 
 		$titulo = trim($_POST['titulo']);
 		$isbn = trim($_POST['isbn']);
 		$autor = trim($_POST['autor']);
@@ -94,36 +94,35 @@
 		}
 	}
 
-	if (isset($_POST['btndelete'])) {
-		
+	if(isset($_POST['delete'])){ 
+
 		$id_libro = trim($_POST['id_libro']);
-		echo $id_libro;
-		//echo 'aca toy ISBN->'.$name;
-		
-		if (!$name) {
-				$error = 'id DEl libro no puede estar en blanco.';
+		//echo 'aca toy ISBN->'.$isbn;exit();
+		if(!$id_libro){
+			$error = 'ISBN no puede estar en blanco.';
 		}
 
-		if (!$error) {
-				//create client object
-				$client = new nusoap_client($wsdl, true);
-				$err = $client->getError();
+		if(!$error){
+			//create client object
+			$client = new nusoap_client($wsdl, true);
+			$err = $client->getError();
 
-				if ($err) {
-						echo '<h2>Error en el Constructor</h2>' . $err;
-						// At this point, you know the call that follows will fail
-						exit();
-				}
-				try {
+			if ($err) {
+				echo '<h2>Error en el Constructor</h2>' . $err;
+				// At this point, you know the call that follows will fail
+			    exit();
+			}
+			 try {
 
-						$result_delete = $client->call('delete', array($id_libro));
-						$result_delete = json_decode($result_delete);
-				} catch (Exception $e) {
-						echo 'Caught exception: ', $e->getMessage(), "\n";
-				}
-		
-}
-}	
+
+				$result1 = $client->call('delete', array($id_libro));
+
+				$result1 = json_decode($result1);
+			  }catch (Exception $e) {
+			    echo 'Caught exception: ',  $e->getMessage(), "\n";
+			 }
+		}
+	}
 
 ?>
 <!DOCTYPE html>
@@ -216,17 +215,20 @@
   		    			     '<td>'.$data->autor.'</td>'.
   		    			     '<td>'.$data->isbn.'</td>'.
 							   '<td>'.$data->genero.'</td>'.
-							   '<td> <input type="hidden" class="form-control m-1" value="'.$id.'" name="id_libro" id="id_libro" >
+							   '<td> 
+							   <form class="form-inline" method = "post" name="form2">
+							   <input type="hidden" class="form-control m-1" value="'.$id.'" name="id_libro" id="id_libro" >
 
-							   <button type="button" name="btndelete" value="" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-
+							   <button type="submit" name="delete" class="btn btn-danger m-1"><i class="far fa-trash-alt"></i></button>
+								</form>
 							   </td>
 							   </tr>';
   		    	}
   		    }}	
 
 
-  		?>
+		  ?>
+		  
     </tbody>
   </table>
 	<div class='row'>
