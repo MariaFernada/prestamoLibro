@@ -128,7 +128,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Book Store Web Service</title>
+  <title>Prestamos</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -138,25 +138,23 @@
 </head>
 <body>
 <header>
-	
 		<div class="row">
 			<img src="imagen.png" class="img-fluid " alt="Responsive image"></img>
 		</div>
 	</header>
 <div class="container">
-<h3>Listar Libros</h3>
+	
+<h1 class="text-center my-3">Biblioteca </h1>
   <!--<img src ='https://www.pinclipart.com/picdir/big/9-90729_ac-dc-cliparts-cono-de-libros-png-transparent.png' width=50 height=50>
 -->
-  <hr>
+  <hr class="border-secondary">
   <div class='row'>
-  <form class="form-inline" method = 'post' name='form1'>
-        <button type="submit" name='sub_all' class="btn btn-secondary m-1">Información de todos los libros</button>
+  <form class="form-inline ml-5" method = 'post' name='form1'>
+        <button type="submit" name='sub_all' class="btn btn-secondary m-1">Listar libros</button>
 
     </form>
-     <br /> 
-   </div>     
-  <div class='row'>
-  	<form class="form-inline" method = 'post' name='form1'>
+  <div class="col-6"></div>
+  	<form class="form-inline " method = 'post' name='form1'>
   		<?php if($error) { ?> 
 	    	<div class="alert alert-danger fade in">
     			<a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -167,14 +165,14 @@
 	      <label for="email m-1">ISBN:</label>
 	      <input type="text" class="form-control m-1" name="isbn" id="isbn" placeholder="Ingrese el ISBN del libro" required>
 	    </div>
-	    <button type="submit" name='sub' class="btn btn-secondary m-1">Obtener información del libro</button>
+	    <button type="submit" name='sub' class="btn btn-secondary m-1">Buscar</button>
     </form>
 
    </div>
-   <hr>
+   <hr class="border-secondary">
    <h2>Información del libro</h2>
-  <table class="table">
-    <thead>
+  <table class="table table-bordered ">
+  <thead  style="background-color: #bccad6;">
       <tr>
 	  <th>id_libros</th>
 	  <th>Titulo</th>
