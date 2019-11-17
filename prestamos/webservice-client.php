@@ -108,7 +108,7 @@
 <body>
 
 <div class="container">
-  <h2>Libros de la facultad de sistemas ( SOAP Web Service)</h2>
+  <h2>PRESTAMO DE LIBROS</h2>
   <hr>
   <div class='row'>
   <form class="form-inline" method = 'post' name='form1'>
@@ -138,7 +138,7 @@
   <table class="table">
     <thead>
       <tr>
-	  <th>ID</th>
+	  <th>id_libros</th>
 	  <th>Titulo</th>
 	  <th>Autor</th>
 	  <th>ISBN</th>

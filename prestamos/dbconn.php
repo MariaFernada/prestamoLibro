@@ -2,7 +2,7 @@
 
 $host         = "localhost";
 $username     = "root";
-$password     = "12345";
+$password     = "";
 $dbname       = "prestamolibros";
 
 try {
