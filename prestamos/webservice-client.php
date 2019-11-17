@@ -64,14 +64,14 @@
 
 	/* Add new book **/
 	if(isset($_POST['addbtn'])){
-		$title = trim($_POST['title']);
+		$titulo = trim($_POST['titulo']);
 		$isbn = trim($_POST['isbn']);
-		$author = trim($_POST['author']);
-		$category = trim($_POST['category']);
-		$price = trim($_POST['price']);
+		$autor = trim($_POST['autor']);
+		$genero = trim($_POST['genero']);
+		$id_libro = trim($_POST['id_libro']);
 
 		//Perform all required validations here
-		if(!$isbn || !$title || !$author || !$category || !$price){
+		if(!$isbn || !$titulo|| !$autor|| !$genero|| !$id_libro){
 			$error = 'All fields are required.';
 		}
 
@@ -86,7 +86,7 @@
 			}
 			 try {
 				/** Call insert book method */
-				 $response =  $client->call('insertBook', array($title, $author, $price, $isbn, $category));
+				 $response =  $client->call('insertBook', array($titulo, $autor, $id_libro, $isbn, $genero));
 				 $response = json_decode($response);
 			  }catch (Exception $e) {
 			    echo 'Caught exception: ',  $e->getMessage(), "\n";
@@ -138,22 +138,25 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Titulo</th>
-        <th>Autor</th>
-        <th>Precio</th>
-        <th>ISBN</th>
-        <th>Categoria</th>
+	  <th>ID</th>
+	  <th>Titulo</th>
+	  <th>Autor</th>
+	  <th>ISBN</th>
+		<th>Genero</th>
+  
+   
+        
       </tr>
     </thead>
     <tbody>
-    <?php 
+    <?php  //select id_libro,titulo,autor,isbn,genero FROM libro
     	if($result){?>
 		      <tr>
-		        <td><?php echo $result->title; ?></td>
-		        <td><?php echo $result->author_name; ?></td>
-		        <td><?php echo $result->price; ?></td>
+		        <td><?php echo $result->id_libro; ?></td>
+		        <td><?php echo $result->titulo; ?></td>
+		        <td><?php echo $result->autor; ?></td>
 		        <td><?php echo $result->isbn; ?></td>	
-		        <td><?php echo $result->category; ?></td>
+		        <td><?php echo $result->genero; ?></td>
 		      </tr>
       <?php }
   		else{ ?>
@@ -163,13 +166,15 @@
   		<?php } 
   			if($result_all){
   		    	foreach ($result_all as $fila => $data) {
-  		    		echo '<tr><td>'.$data->title.'</td>'.
-  		    			     '<td>'.$data->author_name.'</td>'.
-  		    			     '<td>'.$data->price.'</td>'.
+					
+  		    		echo '<tr><td>'.$data->id_libro.'</td>'.
+  		    			     '<td>'.$data->titulo.'</td>'.
+  		    			     '<td>'.$data->autor.'</td>'.
   		    			     '<td>'.$data->isbn.'</td>'.
-  		    			     '<td>'.$data->category.'</td></tr>';
+  		    			     '<td>'.$data->genero.'</td></tr>';
   		    	}
   		    }	
+
 
   		?>
     </tbody>
@@ -200,11 +205,11 @@
 		<?php } ?>
 	    <div class="form-group">
 	      <label for="email"></label>
-	      <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" required>
-				<input type="text" class="form-control" name="author" id="author" placeholder="Enter Author" required>
-				<input type="text" class="form-control" name="price" id="price" placeholder="Enter Price" required>
+	      <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Enter titulo" required>
+				<input type="text" class="form-control" name="autor" id="autor" placeholder="Enter autor" required>
+				<input type="text" class="form-control" name="id_libro" id="id_libro" placeholder="Enter id_libro" required>
 				<input type="text" class="form-control" name="isbn" id="isbn" placeholder="Enter ISBN" required>
-				<input type="text" class="form-control" name="category" id="category" placeholder="Enter Category" required>
+				<input type="text" class="form-control" name="genero" id="genero" placeholder="Enter genero" required>
 	    </div>
 	    <button type="submit" name='addbtn' class="btn btn-default">Añadir nuevo libro</button>
     </form>
